@@ -39,22 +39,14 @@
     </properties>
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/../springcloudparent/product-service" />
-    <file type="web" url="file://$PROJECT_DIR$/../springcloudparent/user-service" />
+    <file type="web" url="file://$PROJECT_DIR$/product-service" />
+    <file type="web" url="file://$PROJECT_DIR$/user-service" />
   </component>
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/../springcloudparent/pom.xml" />
-        <option value="$PROJECT_DIR$/../springcloudparent/cloud-parent/pom.xml" />
-        <option value="$PROJECT_DIR$/../springcloudparent/service-discovery/pom.xml" />
-        <option value="$PROJECT_DIR$/../springcloudparent/user-service/pom.xml" />
-        <option value="$PROJECT_DIR$/../springcloudparent/product-service/pom.xml" />
-      </list>
-    </option>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/../springcloudparent/out" />
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="masterDetails">
     <states>
