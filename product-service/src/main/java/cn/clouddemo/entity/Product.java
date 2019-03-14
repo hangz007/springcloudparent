@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Table(name = "tbProduct")
 public class Product implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue
     private Long id;

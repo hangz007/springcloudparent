@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "tbProduct_Comment")
-public class ProductComment {
+public class ProductComment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /* 商品评论数据库主键 */
     @Id
