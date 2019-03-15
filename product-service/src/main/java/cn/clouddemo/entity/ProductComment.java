@@ -16,8 +16,6 @@ import java.util.Date;
 @Table(name = "tbProduct_Comment")
 public class ProductComment implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     /* 商品评论数据库主键 */
     @Id
     @GeneratedValue

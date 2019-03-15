@@ -7,7 +7,6 @@ import java.io.Serializable;
  * 用户信息定义
  */
 public class UserDto implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nickname;                                // 昵称
