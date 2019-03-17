@@ -60,4 +60,5 @@ public class UserDto implements Serializable {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
 }

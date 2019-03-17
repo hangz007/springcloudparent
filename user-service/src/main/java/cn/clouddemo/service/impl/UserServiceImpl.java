@@ -5,9 +5,10 @@ import cn.clouddemo.entity.User;
 import cn.clouddemo.dao.UserDao;
 import cn.clouddemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by shenzx on 2019/2/16.
@@ -16,31 +17,37 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userRepository;
+    private UserDao userDao;
 
-    @Override
-    public Page<User> getPage(Pageable pageable) {
-        return this.userRepository.findAll(pageable);
+    public List<UserDto> findAll() {
+        List<User> users = this.userDao.findAll();
+        return users.stream().map((user) -> {
+            return new UserDto(user);
+        }).collect(Collectors.toList());
     }
 
-    @Override
-    public User save(UserDto userDto) {
-        User user = this.userRepository.findById(userDto.getId()).get();
-        if(user == null) {
+    public UserDto load(Long id) {
+        User user = this.userDao.findById(id).get();
+        if (null == user)
+            return null;
+
+        return new UserDto(user);
+    }
+
+    public UserDto save(UserDto userDto) {
+        User user = this.userDao.findById(userDto.getId()).get();
+        if (null == user) {
             user = new User();
         }
         user.setNickname(userDto.getNickname());
         user.setAvatar(userDto.getAvatar());
-        return this.userRepository.save(user);
+        this.userDao.save(user);
+
+        return new UserDto(user);
     }
 
-    @Override
-    public User load(Long id) {
-        return this.userRepository.findById(id).get();
-    }
-
-    @Override
     public void delete(Long id) {
-        this.userRepository.deleteById(id);
+        this.userDao.deleteById(id);
     }
+
 }

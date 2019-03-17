@@ -1,16 +1,10 @@
 package cn.clouddemo.controller;
 
 import cn.clouddemo.dto.UserDto;
-import cn.clouddemo.entity.User;
 import cn.clouddemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 用户管理Controller
@@ -28,14 +22,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<UserDto> findAll(Pageable pageable){
-        Page<User> page = this.userService.getPage(pageable);
-        if (null != page) {
-            return page.getContent().stream().map((user) -> {
-                return new UserDto(user);
-            }).collect(Collectors.toList());
-        }
-        return Collections.EMPTY_LIST;
+    public List<UserDto> findAll(){
+        return this.userService.findAll();
     }
 
     /**
@@ -45,8 +33,7 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserDto detail(@PathVariable Long id){
-        User user = this.userService.load(id);
-        return (null != user) ? new UserDto(user) : null;
+        return this.userService.load(id);
     }
 
     /**
@@ -56,9 +43,7 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public UserDto update(@PathVariable Long id, @RequestBody UserDto userDto){
-        userDto.setId(id);
-        User user = this.userService.save(userDto);
-        return (null != user) ? new UserDto(user) : null;
+        return this.userService.save(userDto);
     }
 
     /**
