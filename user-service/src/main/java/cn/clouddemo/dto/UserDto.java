@@ -16,14 +16,17 @@ public class UserDto implements Serializable {
 
     private String avatar;
 
+    private int userServicePort;
+
     public UserDto() {
 
     }
 
-    public UserDto(User user) {
+    public UserDto(User user,int userServicePort) {
         this.id = user.getId();
         this.avatar = user.getAvatar();
         this.nickname = user.getNickname();
+        this.userServicePort = userServicePort;
     }
 
     @Override
@@ -59,6 +62,14 @@ public class UserDto implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public int getUserServicePort() {
+        return userServicePort;
+    }
+
+    public void setUserServicePort(int userServicePort) {
+        this.userServicePort = userServicePort;
     }
 
 }

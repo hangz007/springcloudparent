@@ -5,6 +5,7 @@ import cn.clouddemo.entity.User;
 import cn.clouddemo.dao.UserDao;
 import cn.clouddemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,19 +20,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    @Value("${server.port}")
+    protected  int serverPort = 0;
+
     public List<UserDto> findAll() {
         List<User> users = this.userDao.findAll();
         return users.stream().map((user) -> {
-            return new UserDto(user);
+            return new UserDto(user,serverPort);
         }).collect(Collectors.toList());
     }
 
     public UserDto load(Long id) {
         User user = this.userDao.findById(id).get();
-        if (null == user)
-            return null;
-
-        return new UserDto(user);
+        if(user != null) {
+            return new UserDto(user,serverPort);
+        }
+        return null;
     }
 
     public UserDto save(UserDto userDto) {
@@ -42,8 +46,7 @@ public class UserServiceImpl implements UserService {
         user.setNickname(userDto.getNickname());
         user.setAvatar(userDto.getAvatar());
         this.userDao.save(user);
-
-        return new UserDto(user);
+        return new UserDto(user,serverPort);
     }
 
     public void delete(Long id) {
