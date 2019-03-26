@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
+import service.UserService;
+
 import java.util.List;
 
 /**
@@ -35,9 +37,12 @@ public class ProductController {
     @Autowired
     private ProductCommentDao productCommentDao;
 
-    @Autowired
-    @Qualifier(value = "restTemplate")
-    private RestTemplate restTemplate;
+//    @Autowired
+//    @Qualifier(value = "restTemplate")
+//    private RestTemplate restTemplate;
+
+    private UserService userService;
+
 
     /**
      * 获取商品列表
@@ -72,18 +77,9 @@ public class ProductController {
         return commentList.stream().map((comment) -> {
             ProductCommentDto dto = new ProductCommentDto(comment);
             dto.setProduct(this.productDao.findById(comment.getProductId()).get());
-            dto.setAuthor(this.loadUser(comment.getAuthorId()));
+            dto.setAuthor(this.userService.load(comment.getAuthorId()));
             return dto;
         }).collect(Collectors.toList());
     }
 
-    /**
-     * 通过RestTemplate加载评论作者的用户信息
-     * @param userId 用户Id
-     * @return
-     */
-    protected UserDto loadUser(Long userId) {
-        UserDto userDto = this.restTemplate.getForEntity("http://USERSERVICE/users/{id}", UserDto.class, userId).getBody();
-        return userDto;
-    }
 }
