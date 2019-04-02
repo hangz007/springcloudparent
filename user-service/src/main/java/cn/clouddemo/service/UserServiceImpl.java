@@ -1,4 +1,4 @@
-package cn.clouddemo.service.impl;
+package cn.clouddemo.service;
 
 import cn.clouddemo.dto.UserDto;
 import cn.clouddemo.entity.User;
