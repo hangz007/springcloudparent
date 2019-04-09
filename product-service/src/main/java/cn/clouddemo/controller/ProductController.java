@@ -3,9 +3,9 @@ package cn.clouddemo.controller;
 import cn.clouddemo.dao.ProductCommentDao;
 import cn.clouddemo.dao.ProductDao;
 import cn.clouddemo.dto.ProductCommentDto;
-import cn.clouddemo.dto.UserDto;
 import cn.clouddemo.entity.Product;
 import cn.clouddemo.entity.ProductComment;
+import cn.clouddemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,10 +14,9 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.client.RestTemplate;
-import service.UserService;
+
+
 
 import java.util.List;
 
