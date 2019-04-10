@@ -3,10 +3,12 @@ package cn.clouddemo.controller;
 import cn.clouddemo.dao.ProductCommentDao;
 import cn.clouddemo.dao.ProductDao;
 import cn.clouddemo.dto.ProductCommentDto;
+import cn.clouddemo.dto.UserDto;
 import cn.clouddemo.entity.Product;
 import cn.clouddemo.entity.ProductComment;
 import cn.clouddemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +25,7 @@ import java.util.List;
 /**
  * 商品管理的Endpoint
  *
- * @author CD826
+ * @author shenzx
  * @since 1.0.0
  */
 @RestController
@@ -40,6 +42,8 @@ public class ProductController {
 //    @Qualifier(value = "restTemplate")
 //    private RestTemplate restTemplate;
 
+    @Autowired
+    @Qualifier("userService")
     private UserService userService;
 
 
@@ -79,6 +83,16 @@ public class ProductController {
             dto.setAuthor(this.userService.load(comment.getAuthorId()));
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    /**
+     * FIXME: 这个方法不应该在这里，仅用来演示方便
+     * 获取用户信息列表
+     * @return
+     */
+    @RequestMapping(value = "/users",method = RequestMethod.GET)
+    public List<UserDto> userList() {
+        return this.userService.findAll();
     }
 
 }

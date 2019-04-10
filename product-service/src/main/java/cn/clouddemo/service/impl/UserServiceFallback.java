@@ -2,12 +2,13 @@ package cn.clouddemo.service.impl;
 
 import cn.clouddemo.dto.UserDto;
 import cn.clouddemo.service.UserService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class UserServiceFallback implements UserService {
 
     @Override
