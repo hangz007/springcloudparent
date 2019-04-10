@@ -1,4 +1,4 @@
-package service;
+package cn.clouddemo.service;
 
 import cn.clouddemo.dto.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
