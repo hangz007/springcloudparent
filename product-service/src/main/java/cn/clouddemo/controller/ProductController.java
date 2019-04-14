@@ -8,7 +8,6 @@ import cn.clouddemo.entity.Product;
 import cn.clouddemo.entity.ProductComment;
 import cn.clouddemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,12 +37,7 @@ public class ProductController {
     @Autowired
     private ProductCommentDao productCommentDao;
 
-//    @Autowired
-//    @Qualifier(value = "restTemplate")
-//    private RestTemplate restTemplate;
-
     @Autowired
-    @Qualifier("userService")
     private UserService userService;
 
 

@@ -1,9 +1,8 @@
-package cn.clouddemo.service.impl;
+package cn.clouddemo.service;
 
 import cn.clouddemo.dto.UserDto;
 import cn.clouddemo.service.UserService;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;

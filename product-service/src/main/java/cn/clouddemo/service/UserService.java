@@ -1,7 +1,6 @@
 package cn.clouddemo.service;
 
 import cn.clouddemo.dto.UserDto;
-import cn.clouddemo.service.impl.UserServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
